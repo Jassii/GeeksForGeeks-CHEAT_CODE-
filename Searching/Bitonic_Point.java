@@ -56,7 +56,7 @@ class Solution
             }
             
             //if there are two elements in the array..
-            if ((start == start + 1) && arr[start] >= arr[end])
+            if ((end == start + 1) && arr[start] >= arr[end])
             {
                 return start;
             }
