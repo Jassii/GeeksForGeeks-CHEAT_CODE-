@@ -30,7 +30,11 @@ class Solution
         // Code Here
         
         //base case..
-        if(n==1 || m==1)  //we have to return the number of ways..
+	if(n==0 && m==0)
+	{
+	    return 0;
+	}
+        if(n==0 || m==0)  //we have to return the number of ways..(only one of them is zero)
         {
             return 1;  //there will be only one way for this condition.
         }
