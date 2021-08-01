@@ -32,9 +32,9 @@ public class Main
 		//Brute force approach..is to traverse the array.. and returning the first index where it matches.
 		
 		//another approach...just taking the help of the dif between the value and the target value..
-		int start=0;
-		int i;
-		for(i=0;i<arr.length;i++)
+		
+		int start;
+		for(start=0;start<arr.length;start++)
 		{
 		    if(arr[start]==x)  //if it matches with the target ..break and return the index..
 		    {
