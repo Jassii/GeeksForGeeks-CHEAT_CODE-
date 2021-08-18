@@ -27,7 +27,7 @@ class GFG
 		
 	}
 }
-// } Driver Code Ends
+// } Driver Code End
 
 
 class Solution
