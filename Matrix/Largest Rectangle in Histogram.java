@@ -13,7 +13,7 @@ class Solution
         
         int left[] = new int[heights.length]; //left side index.
         int right[] = new int[heights.length]; //right side index.
-        int area[] = new int[heights.length]; //area for each bar.
+       int area=0;
         
         //traversing from left side of the heights array.
         //for left side..
@@ -67,11 +67,9 @@ class Solution
         for(i=0;i<heights.length;i++)
         {
             int num = right[i]-left[i]+1; //this will tell about the widht of the rectangle.
-            area[i] = heights[i]*num;
+            area = Math.max(area,heights[i]*num);
         }
         
-        Arrays.sort(area);  //this will sort the array..and the last value be the max size of the rectangle..
-        
-        return area[area.length-1];
+        return area;
     }
 }
