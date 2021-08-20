@@ -53,7 +53,7 @@ public class GFG
 // } Driver Code Ends
 
 
-//User function Template for Java
+//User function Templatefor Java
 
 class Solution
 {
