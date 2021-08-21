@@ -1,3 +1,30 @@
+// Given a Binary Tree, find diameter of it.
+// The diameter of a tree is the number of nodes on the longest path between two end nodes in the tree. The diagram below shows two trees each with diameter nine, the leaves that form the ends of a longest path are shaded (note that there is more than one path in each tree of length nine, but no path longer than nine nodes).
+
+
+
+// Example 1:
+
+// Input:
+//        1
+//      /  \
+//     2    3
+// Output: 3
+// Example 2:
+
+// Input:
+//          10
+//         /   \
+//       20    30
+//     /   \ 
+//    40   60
+// Output: 4
+// Your Task:
+// You need to complete the function diameter() that takes root as parameter and returns the diameter.
+
+// Expected Time Complexity: O(N).
+// Expected Auxiliary Space: O(Height of the Tree).
+
 // { Driver Code Starts
 // Initial Template for Java
 
@@ -124,24 +151,26 @@ class Solution
         {
             return 0;
         }
-        int lh = height(root.left);
-        int rh = height(root.right);
-        int ld = diameter(root.left);
-        int rd = diameter(root.right);
-        int h = lh+rh+1;
-        return Math.max(h,Math.max(ld,rd));
+        
+        //both the nodes are on the left side of the binary tree.
+        int ld = diameter(root.left); //maximum distance b/w two nodes on lhs.
+        
+        //both the nodes are on the right side of the binary tree.
+        int rd = diameter(root.right);  //maximum distance b/w two nodes on rhs.
+        
+        //maximum distance between left deepest and right deepest..
+        int f = height(root.left) + height(root.right) + 1;
+        return Math.max(f,Math.max(ld,rd));
+       
     }
-    static int height(Node root)
+    int height(Node node)
     {
-        if(root==null)
+        if(node==null)
         {
             return 0;
         }
-        int lh = height(root.left);
-        int rh = height(root.right);
-        
-        int h = Math.max(lh,rh)+1;
-        
-        return h;
+        int l = height(node.left);
+        int r = height(node.right);
+        return Math.max(l,r)+1;
     }
 }
