@@ -1,3 +1,37 @@
+// Given a Binary Tree. Find the Zig-Zag Level Order Traversal of the Binary Tree.
+
+ 
+
+// Example 1:
+
+// Input:
+//         3
+//       /   \
+//      2     1
+// Output:
+// 3 1 2
+// Example 2:
+
+// Input:
+//            7
+//         /     \
+//        9       7
+//      /  \     /   
+//     8    8   6     
+//    /  \
+//   10   9 
+// Output:
+// 7 7 9 8 8 6 9 10 
+ 
+
+// Your Task:
+// You don't need to read input or print anything. Your task is to complete the function zigZagTraversal() which takes the root node of the Binary Tree as its input and returns a list containing the node values as they appear in the Zig-Zag Level-Order Traversal of the Tree.
+
+ 
+
+// Expected Time Complexity: O(N).
+// Expected Auxiliary Space: O(N).
+
 // { Driver Code Starts
 //Initial Template for Java
 
@@ -127,60 +161,65 @@ class GFG
 	{
 	    //Add your code here.
 	    
-	    //Base condition.
+	    ArrayList<Integer> zigzag = new ArrayList<>();
+	    
+	    //base condition
 	    if(root==null)
 	    {
-	        return (new ArrayList<>());
+	        return zigzag;
 	    }
-	    ArrayList<Integer> res = new ArrayList<>();
 	    
-	    Stack<Node> cL = new Stack<>();
-	    Stack<Node> nL = new Stack<>();
-	    Stack<Node> temp = new Stack<>();
-	    boolean left_to_right=true;
 	    
-	    cL.push(root);
+	    //take two stacks.(current_level and next_level)
+	    Stack<Node> currentLevel = new Stack<>();
+	    Stack<Node> nextLevel = new Stack<>();
+	    boolean left_to_right=true; //this will keep track for the elements to 
+	    //go from left to right or vice-versa..
 	    
-	    while(!cL.isEmpty())
+	    currentLevel.push(root); //push the root node.
+	    while(!currentLevel.isEmpty())
 	    {
-	         Node t = cL.peek();
-	         cL.pop();  
-	         if(t!=null)
-	         {
-	             res.add(t.data);
-	         
-	         if(left_to_right)
-	         {
-	             if(t.left!=null)
-	             {
-	                 nL.push(t.left);
-	             }
-	             if(t.right!=null)
-	             {
-	                 nL.push(t.right);
-	             }
-	         }
-	         else  //right to left.
-	         {
-	             if(t.right!=null)
-	             {
-	                 nL.push(t.right);
-	             }
-	             if(t.left!=null)
-	             {
-	                 nL.push(t.left);
-	             }
-	         }
-	         }
-	         if(cL.isEmpty())
-	         {
-	             left_to_right=!left_to_right;
-	             //swap the current level..
-	             temp = cL;
-	             cL = nL;
-	             nL = temp;
-	         }
+	        Node curr = currentLevel.pop(); //pop the current node from current 
+	        //and put the data in the result array list.
+	        zigzag.add(curr.data);
+	        
+	        //now find the left and right subtree and based on the variable
+	        //left_to_right push the node in the next level stack accordingly.
+	        
+	        if(left_to_right)//true
+	        {
+	            if(curr.left!=null)
+	            {
+	                nextLevel.push(curr.left);
+	            }
+	            if(curr.right!=null)
+	            {
+	                nextLevel.push(curr.right);
+	            }
+	        }
+	        else //if it is false..
+	        {
+	            if(curr.right!=null)
+	            {
+	                nextLevel.push(curr.right);
+	            }
+	            if(curr.left!=null)
+	            {
+	                nextLevel.push(curr.left);
+	            }
+	        }
+	       //now swap the current stack and next stack.
+	       if(currentLevel.isEmpty())
+	       {
+	           //when the current level is empty then only swap it..
+	           Stack<Node> temp = nextLevel;
+	           nextLevel = currentLevel;
+	           currentLevel = temp;
+	           //change the path.
+	           left_to_right = !left_to_right;
+	       }
+	       
 	    }
-	    return res;
+	    return zigzag;
 	}
 }
