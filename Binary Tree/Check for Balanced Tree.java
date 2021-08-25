@@ -220,7 +220,7 @@ class Tree
         //base condition
         if(root==null)
         {
-            return false;
+            return true;
         }
         
         //traverse the Binary Tree..
