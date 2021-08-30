@@ -191,13 +191,11 @@ class Solution
     {
         //  Your code here.
         
-        int f=0; //flag variable..to check if it is the first node..
         solve(root);
+	    
         return head;
     }
-    
-    
-    
+
     void solve(Node root)
     {
         //base case..
@@ -207,6 +205,8 @@ class Solution
         }
         
         //just have to do simple inorder traversal..
+	    
+	    //for left side..
         solve(root.left);
         
         if(prev==null)
@@ -218,9 +218,9 @@ class Solution
             root.left=prev;
             prev.right=root;
         }
-        
         prev=root;
         
+	    //then for right side..
         solve(root.right);
     }
 }
