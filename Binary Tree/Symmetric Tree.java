@@ -147,7 +147,7 @@ class GfG
         }
         return false;
         
-        //another method to this question..
+        //-------------------------------------------------------------------------------------------------another method to this question..
         if(node1==null && node2==null)
         {
             return true;
