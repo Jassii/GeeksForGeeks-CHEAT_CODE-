@@ -103,27 +103,85 @@ class Solution
     {
         //Your code here
         
-        /*************By Using Stack********************/
-        Stack<Node> s = new Stack<>();
-        Node temp = head;
+        /*//i am not supposed to take the stack
+        Stack<Node> S = new Stack<Node>();
+        Node temp=head;
         while(temp!=null)
         {
-            s.push(temp);
-            temp = temp.next;
+            S.push(temp);
+            temp=temp.next;
         }
-        Node temp1 = head;
-        while(temp1!=null)
+    
+        temp=head;
+        while(temp!=null)
         {
-            Node t = s.pop();  //top node.
-            if(t.data!=temp1.data)
+            //i am supposed to match the data..
+            //not simply compare the nodes..
+            if(temp.data!=S.pop().data) 
             {
                 return false;
             }
-            temp1 = temp1.next;
+            temp=temp.next;
         }
-        return true;
+        return true;*/
         
-        /*********************By Reversing the List*********************************/
-        //Very Lenghty..
+        /***************************NOT USING ANY STACK************************************************/
+        //O(1) SPACE COMPLEXITY.
+        /********************************* MUCH SUITABLE APPROACH RATHER THAN USING ANY STACK***************************************************************************************/
+        
+        //will be doing with some other approach..
+        //find the middle node of the linked list
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null)
+        {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        //now slow pointer is pointing to the middle node.
+        //now reverse the list after the middle node..
+        //  1->3->2<-3<-1  here 2 is the middle node of the linked list..
+        
+        
+        //reverse the linked list after the middle node..
+        Node prev=null;
+        Node next=null;
+        Node curr=slow;
+        
+        while(curr!=null)
+        {
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        
+        //now prev will be the new head for the reverse linked list.
+        Node head2=prev; 
+        
+        //  (head)1->3->2<-3<-1(head2)..
+        
+        //head is pointing to the first node..
+        //head2 is pointing to the last node..
+        
+        //will be using two pointer approach..(and compare both of them)
+        Node temp1=head;  //pointing to the first node.
+        Node temp2=head2; //pointing to the last node.
+        
+        while(temp1!=null && temp2!=null)
+        {
+            //compare the data..if it doesn't matches..then simply return false..
+            if(temp1.data!=temp2.data)
+            {
+                return false;
+            }
+            //else move forward in the linked list..
+            temp1=temp1.next;
+            temp2=temp2.next;
+        }
+        
+        //if nothing happens, means everything is correct..(return true..)
+        return true;
     }    
 }
