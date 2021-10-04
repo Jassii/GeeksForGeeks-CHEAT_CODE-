@@ -1,4 +1,5 @@
-// Given an array arr[] and an integer K where K is smaller than size of array, the task is to find the Kth smallest element in the given array. It is given that all array elements are distinct.
+// Given an array arr[] and an integer K where K is smaller than size of array, the task is to find the Kth smallest element in the given array. 
+//It is given that all array elements are distinct.
 
 // Example 1:
 
@@ -27,11 +28,14 @@
 // Expected Time Complexity: O(n)
 // Expected Auxiliary Space: O(1)
 
-
 // { Driver Code Starts
 //Initial Template for Java
 
 /*package whatever //do not write package name here */
+
+
+// ..............................done this question using ..(min and max heap).................................
+
 
 import java.io.*;
 import java.util.*;
@@ -68,6 +72,7 @@ class Solution
     { 
         //Your code here
         
+        //as i did this question using min heap//
         //creating a min heap of the array.
         PriorityQueue<Integer>  P = new PriorityQueue<>();
     
@@ -80,6 +85,34 @@ class Solution
         {
             P.poll();
         }
+        return P.peek();
+        
+        //now doing this question using max heap property...
+        
+        PriorityQueue<Integer> P = new PriorityQueue<>(Collections.reverseOrder());
+        
+        //now till k-1 elements input the elements.
+        int i;
+        for(i=l;i<k;i++)
+        {
+            P.add(arr[i]);
+        }
+        
+        //now for the rest of the elements compare the first element in
+        //the priority queue with the element to be inserted..
+        
+        //if the array element is less than the peel elemnt..
+        //replace the element..and at last..return the peek element..
+        
+        for(i=k;i<=r;i++)
+        {
+            if(arr[i]<P.peek())
+            {
+                P.poll();  //will remove the peek element..
+                P.add(arr[i]);
+            }
+        }
+        
         return P.peek();
     } 
 }
